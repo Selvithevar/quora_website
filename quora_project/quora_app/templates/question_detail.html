@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-5">
+
+  <!-- Question Card -->
+  <div class="card shadow-sm p-4 mb-4">
+    <h3 class="mb-2 text-dark">{{ question.title }}</h3>
+    <p class="text-muted">Asked by <strong>{{ question.author.username }}</strong></p>
+    <hr>
+    <p class="mt-3">{{ question.description }}</p>
+  </div>
+
+  <!-- Answers Section -->
+  <h4 class="mb-3" style="color: #B92B27;">Answers</h4>
+
+  {% for answer in answers %}
+    <div class="card shadow-sm mb-3">
+      <div class="card-body">
+        <p class="card-text mb-2">{{ answer.content }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <small class="text-muted">By {{ answer.author.username }}</small>
+          <div>
+            <span class="me-2 text-danger">❤️ {{ answer.total_likes }}</span>
+            <a href="{% url 'like_answer' answer.id %}" class="btn btn-sm btn-outline-danger">Like</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No answers yet. Be the first to contribute!</p>
+  {% endfor %}
+
+<!-- Answer Form -->
+<div class="card mt-5 shadow-sm p-4">
+    <h5 class="mb-3" style="color: #B92B27;">Your Answer</h5>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="id_content" class="form-label fw-semibold">Answer</label>
+        <textarea name="content" id="id_content" rows="6" class="form-control" 
+          style="border-radius: 12px; resize: vertical; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);"
+          placeholder="Share your knowledge or thoughts..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-quora w-100">Post Answer</button>
+    </form>
+  </div>
+  
+</div>
+{% endblock %}

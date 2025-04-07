@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-4" style="color: #B92B27;">Welcome Back</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-quora w-100">Login</button>
+    </form>
+    <div class="text-center mt-3">
+      Don’t have an account? <a href="{% url 'register' %}" class="text-decoration-none" style="color: #B92B27;">Register here</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

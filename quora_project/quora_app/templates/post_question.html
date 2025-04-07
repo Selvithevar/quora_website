@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="card shadow-lg p-4" style="max-width: 700px; width: 100%;">
+    <h2 class="text-center mb-4" style="color: #B92B27;">Ask a Question</h2>
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label for="id_title" class="form-label fw-semibold">Title</label>
+        <input type="text" name="title" class="form-control" id="id_title" placeholder="Enter your question title here" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="id_description" class="form-label fw-semibold">Description</label>
+        <textarea name="description" class="form-control" id="id_description" rows="6" placeholder="Give more context or details about your question" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-quora w-100">Post Question</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

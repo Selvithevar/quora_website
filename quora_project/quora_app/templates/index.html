@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Questions</h2>
+<div class="row">
+  {% for q in questions %}
+    <div class="col-md-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ q.title }}</h5>
+          <p class="card-text">Asked by {{ q.author.username }}</p>
+          <a href="{% url 'question_detail' q.id %}" class="btn btn-outline-primary btn-sm">View</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
